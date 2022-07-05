@@ -8,7 +8,7 @@ public class AddressBook {
 		System.out.println("Welcome to Address Book Program ");
 		AddressBookService.addContact();
 		AddressBookService.display();
-		AddressBookService.editContact();
+		AddressBookService.deleteContact();
 		
 	}
 }

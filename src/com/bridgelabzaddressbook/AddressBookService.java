@@ -47,7 +47,7 @@ public class AddressBookService {
 		
 		return -1;
 	}
-	public static void editContact()
+	/*public static void editContact()
 	{
 		System.out.println("Enter the name you want to edit");
 		String editName=sc.next();
@@ -62,5 +62,41 @@ public class AddressBookService {
 			System.out.println("Found the contact\nplease edit the details:");
 			addContact();
 		}
+	}*/
+	
+	private static int deleteContact(String deleteName)
+	{
+		for (Contact contact: arrayOfContacts) {
+			if(deleteName.compareToIgnoreCase(contact.getFirstName())==0) {
+				return arrayOfContacts.indexOf(contact);
+			}
+			}
+		return -1;
+		
+		}
+	
+	public static void deleteContact()
+	{
+		System.out.println("Enter name to delete");
+		String deleteName=sc.next();
+		int ans=deleteContact(deleteName);
+		if(ans==-1)
+		{
+			System.out.println("Contact with name"+deleteName+"not found");
+		}
+		else {
+			System.out.println("Delete name :"+deleteName+"have been deleted");
+			arrayOfContacts.clear();
+			if(arrayOfContacts.isEmpty())
+			{
+				System.out.println("No new contacts");
+			}
+			else {
+				for(Contact c:arrayOfContacts) {
+					System.out.println(c);
+				}
+			}
+		}
+		
 	}
 }
