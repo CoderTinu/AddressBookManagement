@@ -30,7 +30,9 @@ public class Contact {
 	+phone+"\nEmail is: "+email;
 				 
 	}
-
-	
+	public String getFirstName() {
+		
+		return null;
+	}
 
 }
