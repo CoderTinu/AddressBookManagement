@@ -14,7 +14,8 @@ interface ICheckDuplicate{
 
 public class AddressBookService {
 	public static Scanner sc = new Scanner(System.in);
-	 public static ArrayList<Contacts> arrayOfContacts;
+	  public static ArrayList<Contacts> arrayOfContacts;
+	  
 	    public static HashMap<String, ArrayList<Contacts>> hashMapOfAddressBooks = new HashMap<>();
 
 	    public static HashMap<String,String> dictionaryForState = new HashMap<String,String>();
@@ -75,6 +76,13 @@ public class AddressBookService {
 	            dictionaryForCity.put(first_name+" "+last_name,city);
 	            if (findAddressBook(bookName) != null) {
 	                hashMapOfAddressBooks.get(bookName).add(c);
+	                try {
+	                    AddressBookIo.writeIntoFile();
+	                }
+	                catch (IOException e)
+	                {
+	                    System.out.println(e.getMessage());
+	                }
 	                return;
 	            }
 	            arrayOfContacts = new ArrayList<Contacts>();
@@ -83,6 +91,13 @@ public class AddressBookService {
 	        }
 	        else{
 	            System.out.println("The contact with name: "+first_name+" already exists.\n"+hashMapOfAddressBooks.get(bookName));
+	        }
+	        try {
+	            AddressBookIo.writeIntoFile();
+	        }
+	        catch (IOException e)
+	        {
+	            System.out.println(e.getMessage());
 	        }
 	    }
 	    public static void displayByOrder() {
@@ -95,8 +110,14 @@ public class AddressBookService {
 	        }
 	        hashMapOfAddressBooks.get(name).stream().sorted((contact1, contact2) -> contact1.getFirstName().compareToIgnoreCase(contact2.getFirstName()))
 	                .forEach(contact -> System.out.println(contact));
-
-	    }
+	        try {
+	            System.out.println("Data inserted in file is:");
+	            AddressBookIo.readFromFile();
+	        }
+	        catch (IOException e){
+	            System.out.println(e.getMessage());
+	        }
+	            }
 	    public static void editContact() {
 	        System.out.println("Enter the Address book you want to edit.");
 	        String addressBookEdit = sc.next();
@@ -210,5 +231,5 @@ public class AddressBookService {
 	                return contact1.getZip()==(contact2.getZip())?0:1;
 	            }).forEach(n1-> System.out.println(n1));
 	        });
-}
+	    }
     }
