@@ -6,6 +6,10 @@ public class Contacts {
     private String lastName;
     private String address;
 
+    public int getZip() {
+        return zip;
+    }
+
     public String getCity() {
         return city;
     }
@@ -45,5 +49,4 @@ public class Contacts {
         return "First name is: "+firstName+"\nLast Name is: "+lastName+"\nAddress is: "+address+"\nCity name is: "+city+
                 "\nState is: "+state+"\nZip is: "+zip+"\nPhone Number is: "+phone+"\nEmail Id is: "+email+"\n";
     }
-	
 }
